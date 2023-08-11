@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import * as z from 'zod';
 import {MessageSquare} from "lucide-react";
 import {useForm} from "react-hook-form";
@@ -13,8 +14,14 @@ import {
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {formSchema} from "@/app/(dashboard)/(routes)/talk/constants";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
+import {ChatCompletionRequestMessage} from "openai";
 
 const TalkPage = () => {
+    const router = useRouter();
+    const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -25,7 +32,27 @@ const TalkPage = () => {
     const isLoading = form.formState.isSubmitting;
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values);
+        try{
+            const userMessage: ChatCompletionRequestMessage = {
+                role:'user',
+                content: values.prompt,
+            };
+            const newMessages = [...messages, userMessage];
+
+            const response = await axios.post("api/talk",{
+                messages: newMessages,
+            });
+
+            setMessages((current) => [...current, userMessage,response.data]);
+
+            form.reset();
+
+        } catch (error :any){
+            // capitlism a pro model
+            console.log('error');
+        }finally {
+            router.refresh();
+        }
     };
 
     return (
@@ -51,7 +78,7 @@ const TalkPage = () => {
                                                 <Input
                                                     className={'border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'}
                                                     disabled={isLoading}
-                                                    placeholder={'Who is my real dad?'}
+                                                    placeholder={'Am I a real boy?'}
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -65,6 +92,15 @@ const TalkPage = () => {
                             </Button>
                         </form>
                     </Form>
+                </div>
+                <div className={'space-y-4 mt-4'}>
+                    <div className={'flex flex-col-reverse gap-y-4'}>
+                        {messages.map((message) => (
+                            <div key ={message.content}>
+                                {message.content}
+                            </div>
+                            )}
+                    </div>
                 </div>
             </div>
         </div>
