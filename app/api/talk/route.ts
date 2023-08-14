@@ -1,4 +1,4 @@
-import {Configuration, OpenAiAPI} from "openai";
+import { Configuration, OpenAIApi } from "openai";
 import {NextResponse} from "next/server";
 import {auth} from "@clerk/nextjs";
 
@@ -6,7 +6,7 @@ const configuration= new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-const openai = new OpenAiAPI(configuration);
+const openai = new OpenAIApi(configuration);
 
 export async function POST(
     req: Request
@@ -36,7 +36,7 @@ export async function POST(
         return NextResponse.json(response.data.choices[0].message);
 
     } catch (error){
-        console.log('[Conservation_Error]',error);
-        return new NextResponse("Internal Error", {status:500});
+        console.log('[CONVERSATION_ERROR]', error);
+        return new NextResponse("Internal Error", { status: 500 });
     }
-}
+};
