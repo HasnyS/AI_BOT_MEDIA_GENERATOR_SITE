@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration);
 
 const instructionMessage: ChatCompletionRequestMessage = {
     role: "system",
-    content: "Let's Role Play, you are a bot named SAMA. I am your creator Syed"
+    content: "You are a code generator. You Must answer only in markdown snippets. Use Code Comments for explanations"
 }
 
 export async function POST(
@@ -41,7 +41,7 @@ export async function POST(
         return NextResponse.json(response.data.choices[0].message);
 
     } catch (error){
-        console.log('[TALK_ERROR]', error);
+        console.log('[CODE_ERROR]', error);
         return new NextResponse("Internal Error", { status: 500 });
     }
 };

@@ -2,7 +2,7 @@
 import {useState} from "react";
 import axios from "axios";
 import * as z from 'zod';
-import {MessageSquare} from "lucide-react";
+import {CodeIcon} from "lucide-react";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 
@@ -22,8 +22,9 @@ import {ChatCompletionRequestMessage} from "openai";
 import {cn} from "@/lib/utils";
 import {UserAvatar} from "@/components/user-avatar";
 import {BotAvatar} from "@/components/bot-avatar";
+import ReactMarkdown from "react-markdown";
 
-const TalkPage = () => {
+const BuildPage = () => {
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -44,7 +45,7 @@ const TalkPage = () => {
             };
             const newMessages = [...messages, userMessage];
 
-            const response = await axios.post("/api/talk",{
+            const response = await axios.post("/api/code",{
                 messages: newMessages });
             setMessages((current) => [...current, userMessage, response.data]);
 
@@ -58,11 +59,11 @@ const TalkPage = () => {
     return (
         <div>
             <Heading
-                title={"Let's Talk"}
-                description={"Conversation Mode"}
-                icon={MessageSquare}
-                iconColor={"text-violet-500"}
-                bgColor={"bg-violet-500/10"}
+                title={"Let's Build"}
+                description={"Coding Mode"}
+                icon={CodeIcon}
+                iconColor={"text-emerald-700"}
+                bgColor={"bg-emerald-700/10"}
             />
             <div className={'px-4 lg:px-8'}>
                 <div>
@@ -78,7 +79,7 @@ const TalkPage = () => {
                                             <Input
                                                 className={'border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'}
                                                 disabled={isLoading}
-                                                placeholder={'Am I a real boy?'}
+                                                placeholder={'Make a React App to pass the butter'}
                                                 {...field}
                                             />
                                         </FormControl>
@@ -86,7 +87,7 @@ const TalkPage = () => {
                                 )}
                             />
                             <Button
-                                className={'col-span-12 lg-col-span-2 bg-violet-500 w-full'}
+                                className={'col-span-12 lg-col-span-2 bg-emerald-700 w-full'}
                                 disabled={isLoading}>
                                 Generate
                             </Button>
@@ -100,7 +101,7 @@ const TalkPage = () => {
                         </div>
                     )}
                     {messages.length === 0 && !isLoading && (
-                        <Empty label={"Let's discuss something"}/>
+                        <Empty label={"Let's make something"}/>
                     ) }
                     <div className='flex flex-col-reverse gap-y-4'>
                         {messages.map((message) => (
@@ -111,9 +112,23 @@ const TalkPage = () => {
                                 )}
                             >
                                 {message.role === "user" ? <UserAvatar/> : <BotAvatar/>}
-                                <p className='text-sm'>
-                                    {message.content}
-                                </p>
+                                    <ReactMarkdown
+                                    components ={{
+                                        pre: ({node, ...props }) =>(
+                                            <div className={"overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg"}>
+                                                <pre{...props} />
+                                            </div>
+                                        ),
+                                        code: ({node, ...props}) => (
+                                            <code className={"bg-black/10 p-1 rounded-lg"}>
+                                                {...props}
+                                            </code>
+                                        )
+                                    }}
+
+                                    className={"text-sm overflow-hidden leading-7"}>
+                                        {message.content || ""}
+                                    </ReactMarkdown>
                             </div>
                         ))}
                     </div>
@@ -123,4 +138,4 @@ const TalkPage = () => {
     );
 };
 
-export default TalkPage;
+export default BuildPage;
