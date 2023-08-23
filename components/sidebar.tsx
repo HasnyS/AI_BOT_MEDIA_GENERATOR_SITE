@@ -48,26 +48,20 @@ const routes = [
         icon: CodeIcon,
         href: "/build",
         color: "text-emerald-500",
-    },
-    {
-        label: "Settings",
-        icon: Settings2Icon,
-        href: "/settings",
-        color: "text-grey-500",
-    },
+    }
 ];
 
 const Sidebar = () => {
     const pathname = usePathname();
     return (
-        <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
+        <div className="space-y-4 py-4 flex flex-col h-full bg-black text-white ">
             <div className="px-3 py-2 flex-1">
                 <Link href="/dashboard" className="flex items-center pl-3 mb-14">
                     <div className="relative w-8 h-8 mr-3">
                         <Image fill alt="logo" src="/logo.png" />
                     </div>
                     <h1 className={cn("text-2xl font-bold", montserrat.className)}>
-                       S.A.M.A
+                       S.A.M
                     </h1>
                 </Link>
                 <div className="space-y-1">

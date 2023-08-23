@@ -1,46 +1,41 @@
 "use client";
 
-import {Montserrat} from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Image from "next/image";
-import Link from "next/link"
-import {useAuth} from "@clerk/nextjs";
-import {cn} from "@/lib/utils";
-import {Button} from "@/components/ui/button";
+import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
-
-const font = Montserrat ({
-    weight:"600",
-    subsets:["latin"]
+const font = Montserrat({
+    weight: "600",
+    subsets: ["latin"],
 });
 
 export const LandingNavbar = () => {
-    const {isSignedIn} = useAuth();
+    const { isSignedIn } = useAuth();
 
-    return(
+    return (
         <nav className={"p-4 bg-transparent flex items-center justify-between"}>
-            <Link
-                href={"/"}
-                className={'flex items-center'}>
+            <Link href={"/"} className={'flex items-center'}>
                 <div className={"relative h-8 w-8 mr-4"}>
                     <Image
                         fill
-                        alt={"Logo"}
-                        src={"/logo.png"}/>
-                    <h1 className={cn('text-2xl font-bold text-white',font.className)}>
-                        S.A.M.A
-                    </h1>
+                        alt="Logo"
+                        src="/logo.png"
+                    />
                 </div>
+                <h1 className={cn('text-2xl font-bold text-white', font.className)}>
+                    S.A.M
+                </h1>
             </Link>
             <div className={'flex items-center gap-x-2 '}>
-                <Link href={isSignedIn? "/dashboard" : "/sign-up"}>
-                    <Button
-                        className={'col-span-12 lg-col-span-2 bg-violet-700 w-full'}>
-                        Get Started
+                <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
+                    <Button className={'col-span-12 lg-col-span-2 bg-violet-700 w-full'}>
+                        Log In
                     </Button>
                 </Link>
-
             </div>
-
         </nav>
-    )
+    );
 };

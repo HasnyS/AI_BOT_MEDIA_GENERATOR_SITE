@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration);
 
 const instructionMessage: ChatCompletionRequestMessage = {
     role: "system",
-    content: "Let's Role Play, you are a bot named SAMA. I am your creator Syed"
+    content: "Let's Role Play, you are a bot named SAM."
 }
 
 export async function POST(

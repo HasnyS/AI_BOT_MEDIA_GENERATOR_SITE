@@ -12,17 +12,17 @@ const testimonials = [
         name: "Taha",
         avatar: "T",
         title: "Data Engineer",
-        description: 'This is the best AI tool I have ever used'
+        description: 'Game changer'
     },{
         name: "Hamid",
         avatar: "H",
         title: "Software Engineer",
-        description: 'This is the best AI tool I have ever used'
+        description: 'Very cool'
     },{
         name: "Myra",
         avatar: "M",
         title: "Software Engineer",
-        description: 'This is the best AI tool I have ever used'
+        description: 'Seriously impressed '
     },
 ];
 
