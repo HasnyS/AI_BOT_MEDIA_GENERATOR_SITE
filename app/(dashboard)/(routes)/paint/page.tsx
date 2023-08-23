@@ -43,7 +43,7 @@ const ImagePage = () => {
         try{
             setImages([]);
 
-            const response = await axios.post(".api/draw",values);
+            const response = await axios.post("/api/draw",values);
 
             const urls = response.data.map((image: {url: string}) => image.url );
 
@@ -162,7 +162,7 @@ const ImagePage = () => {
                         <Empty label={"Let's unleash our imaginations"}/>
                     ) }
                     <div
-                    className={'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mt-8'}>
+                    className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mt-8'}>
                         {images.map((src) => (
                         <Card
                         key={src}
