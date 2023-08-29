@@ -79,7 +79,7 @@ const BuildPage = () => {
                                             <Input
                                                 className={'border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'}
                                                 disabled={isLoading}
-                                                placeholder={'Make a React App to pass the butter'}
+                                                placeholder={'Make a React app to pass the butter'}
                                                 {...field}
                                             />
                                         </FormControl>
@@ -112,23 +112,18 @@ const BuildPage = () => {
                                 )}
                             >
                                 {message.role === "user" ? <UserAvatar/> : <BotAvatar/>}
-                                    <ReactMarkdown
-                                    components ={{
-                                        pre: ({node, ...props }) =>(
-                                            <div className={"overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg"}>
-                                                <pre{...props} />
-                                            </div>
-                                        ),
-                                        code: ({node, ...props}) => (
-                                            <code className={"bg-black/10 p-1 rounded-lg"}>
-                                                {...props}
-                                            </code>
-                                        )
-                                    }}
-
-                                    className={"text-sm overflow-hidden leading-7"}>
-                                        {message.content || ""}
-                                    </ReactMarkdown>
+                                <ReactMarkdown components={{
+                                    pre: ({ node, ...props }) => (
+                                        <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+                                            <pre {...props} />
+                                        </div>
+                                    ),
+                                    code: ({ node, ...props }) => (
+                                        <code className="bg-black/10 rounded-lg p-1" {...props} />
+                                    )
+                                }} className="text-sm overflow-hidden leading-7">
+                                    {message.content || ""}
+                                </ReactMarkdown>
                             </div>
                         ))}
                     </div>
