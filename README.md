@@ -10,12 +10,11 @@
 
 ## Technologies Used
 
--TypeScript
--Next 13 (App Router)
--React
--Tailwind (Shadcn UI)
--Prisma
--MySQL
+- TypeScript
+- Next 13 (App Router)
+- React
+- Tailwind (Shadcn UI)
+- MySQL
 
 ## Site Preview
 
