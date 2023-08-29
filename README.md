@@ -1,6 +1,10 @@
 # S.A.M BOT
  AI DASHBOARD SITE
 
+ ![IMG](https://imgur.com/nvmUWE9.png)
+
+
+
 ## Features
 - Text Generation (Powered by CHATGPT)
 - Image Generation (Powered by DALLE 2)
@@ -18,5 +22,4 @@
 
 ## Site Preview
 
-https://ai-bot-media-generator-site-4jzipacbc-hasnys.vercel.app
-
+https://ai-bot-media-generator-site-oubq-b3rkbzvtu-hasnys.vercel.app
