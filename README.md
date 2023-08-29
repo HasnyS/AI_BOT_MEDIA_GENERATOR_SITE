@@ -20,6 +20,6 @@
 - Tailwind (Shadcn UI)
 - MySQL
 
-## Site Preview
+## Live Site Preview
 
 https://ai-bot-media-generator-site-oubq-b3rkbzvtu-hasnys.vercel.app
