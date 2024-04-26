@@ -4,6 +4,9 @@
  ![IMG](https://imgur.com/nvmUWE9.png)
 
 
+ AI site using various APIs to generate AI content for users, also includes stripe integration
+
+
 
 ## Features
 - Text Generation (Powered by CHATGPT)
